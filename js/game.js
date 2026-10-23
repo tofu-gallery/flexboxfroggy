@@ -1,3 +1,4 @@
+// Tofu adaptation: removed unused Twitter widget initialization to avoid third-party scripts.
 var game = {
   colorblind: (localStorage.colorblind && JSON.parse(localStorage.colorblind)) || 'false',
   language: window.location.hash.substring(1) || 'en',
@@ -175,15 +176,6 @@ var game = {
     }).on('hashchange', function() {
       game.language = window.location.hash.substring(1) || 'en';
       game.translate();
-
-      $('#tweet iframe').remove();
-      var html = '<a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="https://flexboxfroggy.com" data-via="thomashpark">Tweet</a> ' +
-                 '<a href="https://twitter.com/thomashpark" class="twitter-follow-button" data-show-count="false">Follow @thomashpark</a>';
-      $('#tweet').html(html);
-
-      if (typeof twttr !== 'undefined') {
-        twttr.widgets.load();
-      }
 
       if (game.language === 'en') {
         history.replaceState({}, document.title, './');
